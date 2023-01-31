@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <div className="posts-container">
+      <div className="main-container">
         <Posts />
         <Subreddits />
       </div>
