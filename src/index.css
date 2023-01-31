@@ -12,6 +12,8 @@ code {
     monospace;
 }
 
+/* Nav bar */
+
 nav {
   max-width: 100%;
   display: flex;
@@ -63,4 +65,55 @@ nav {
   top: 11px;
   left: 52%;
   font-size: 1.2rem;
+}
+
+/* Posts */
+
+.posts-container {
+  display: flex;
+  /* justify-content: center;
+  flex-direction: column;
+  align-items: center; */
+}
+
+.single-post-container {
+  display: flex;
+  margin-top: 1.5rem;
+  border: 2px solid black;
+  border-radius: 0.5rem;
+  box-shadow: 1px 5px 5px rgb(0 0 0 / 25%);
+  /* justify-content: space-evenly;
+  width: fit-content; */
+}
+
+.posts-vote-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  padding: 1rem;
+  /* border: 2px solid;
+  border-right: 0; */
+}
+
+.posts-content-container {
+  padding: 1rem;
+  /* border: 2px solid;
+  border-left: 0; */
+}
+
+.posts-content-comments {
+  display: block;
+  margin-left: auto;
+}
+
+.temp {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 8%;
+}
+
+.temp2 {
+  flex-grow: 1;
 }

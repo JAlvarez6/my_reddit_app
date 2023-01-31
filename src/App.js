@@ -1,10 +1,16 @@
 import React from 'react'
 import { Navbar } from './components/Navbar/Navbar'
+import { Posts } from './features/posts/Posts'
+import { Subreddits } from './features/subreddits_sidebar/subreddits'
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+      <div className="posts-container">
+        <Posts />
+        <Subreddits />
+      </div>
     </div>
   )
 }
