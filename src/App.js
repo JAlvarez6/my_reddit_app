@@ -1,9 +1,9 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { Navbar } from './components/Navbar/Navbar'
+import { Navbar } from './components/Navbar'
 import { Post } from './features/post/Post'
 import { Posts } from './features/posts/Posts'
-import { Subreddits } from './features/subreddits_sidebar/subreddits'
+import { Subreddits } from './features/subreddits_sidebar/Subreddits'
 
 function App() {
   return (
