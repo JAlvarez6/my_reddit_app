@@ -3,7 +3,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const getPosts = createAsyncThunk(
   'Posts/getPosts',
   async (subreddit) => {
-    console.log(subreddit)
     const response = await fetch(`https://www.reddit.com/${subreddit}.json`)
     const data = await response.json()
 

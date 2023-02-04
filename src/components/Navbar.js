@@ -7,12 +7,10 @@ export const Navbar = () => {
   return (
     <nav>
       <div className="logo">
-        <Link className="logo-link" to={'/'}>
-          <img className="logo-img" src={logo} alt="logo" />
-          <p className="logo-text">
-            Reddit<span className="logo-span">Mini</span>
-          </p>
-        </Link>
+        <img className="logo-img" src={logo} alt="logo" />
+        <p className="logo-text">
+          Reddit<span className="logo-span">Mini</span>
+        </p>
       </div>
       <SearchBar />
     </nav>
