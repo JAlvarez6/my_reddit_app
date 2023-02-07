@@ -1,3 +1,4 @@
+// Checks and formats how much time has passsed from the epoch passed in
 export const formatTimeAgo = (date) => {
   const rft = new Intl.RelativeTimeFormat('en-us', {
     style: 'long',

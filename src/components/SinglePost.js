@@ -1,6 +1,10 @@
 import React from 'react'
 import { formatTimeAgo } from '../utils/formatTimeAgo'
-import { galleryImages, tempFunc1, tempFunc2 } from '../utils/galleryHandler'
+import {
+  galleryImages,
+  galleryRight,
+  galleryLeft,
+} from '../utils/galleryHandler'
 import { useParams } from 'react-router-dom'
 import { marked } from 'marked'
 
@@ -85,10 +89,10 @@ export const SinglePost = ({ Post }) => {
                 )
               })}
 
-              <button className="gallery-button-prev" onClick={tempFunc2}>
+              <button className="gallery-button-prev" onClick={galleryLeft}>
                 1
               </button>
-              <button className="gallery-button-next" onClick={tempFunc1}>
+              <button className="gallery-button-next" onClick={galleryRight}>
                 2
               </button>
             </div>

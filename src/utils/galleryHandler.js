@@ -1,3 +1,4 @@
+// Extracts images from the reddit post gallery property
 export const galleryImages = (galleryData) => {
   const gallery = []
 
@@ -12,48 +13,54 @@ export const galleryImages = (galleryData) => {
   return gallery
 }
 
-export const tempFunc1 = (e) => {
+// Moves gallery images to the right
+export const galleryRight = (e) => {
   e.stopPropagation()
 
-  const targetGallery = e.target.parentElement.id
-  const tempVar1 = document.getElementById(targetGallery)
-  const tempVar2 = tempVar1.querySelectorAll('.gallery-slide')
+  const galleryContainerID = e.target.parentElement.id
+  const galleryContainer = document.getElementById(galleryContainerID)
+  const gallerySlides = galleryContainer.querySelectorAll('.gallery-slide')
 
-  Object.values(tempVar2).forEach((slide, index) => {
+  Object.values(gallerySlides).forEach((slide) => {
     if (slide.style.right === '') {
       slide.style.right = 0
     }
 
-    if ((tempVar2.length - 1) * 100 === parseFloat(slide.style.right)) {
+    // Checks if gallery is at the end
+    if ((gallerySlides.length - 1) * 100 === parseFloat(slide.style.right)) {
       return
     }
 
-    let num1 = parseFloat(slide.style.right)
-    num1 += 100
+    let rightStyle = parseFloat(slide.style.right)
 
-    slide.style.right = num1 + '%'
+    rightStyle += 100
+
+    slide.style.right = rightStyle + '%'
   })
 }
 
-export const tempFunc2 = (e) => {
+// Moves gallery images to the left
+export const galleryLeft = (e) => {
   e.stopPropagation()
 
-  const targetGallery = e.target.parentElement.id
-  const tempVar1 = document.getElementById(targetGallery)
-  const tempVar2 = tempVar1.querySelectorAll('.gallery-slide')
+  const galleryContainerID = e.target.parentElement.id
+  const galleryContainer = document.getElementById(galleryContainerID)
+  const gallerySlides = galleryContainer.querySelectorAll('.gallery-slide')
 
-  Object.values(tempVar2).forEach((slide, index) => {
+  Object.values(gallerySlides).forEach((slide) => {
     if (slide.style.right === '') {
       slide.style.right = 0
     }
 
+    // Checks if gallery is at the beginning
     if (parseFloat(slide.style.right) === 0) {
       return
     }
 
-    let num1 = parseFloat(slide.style.right)
-    num1 -= 100
+    let rightStyle = parseFloat(slide.style.right)
 
-    slide.style.right = num1 + '%'
+    rightStyle -= 100
+
+    slide.style.right = rightStyle + '%'
   })
 }
