@@ -1,20 +1,7 @@
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
-import { formatTimeAgo } from '../../utils/formatTimeAgo'
-import { selectSelectedSubreddit } from '../posts/PostsSlice'
-import { fetchComments, selectComments } from './CommentsSlice'
+import React from 'react'
+import { formatTimeAgo } from '../utils/formatTimeAgo'
 
-export const Comments = () => {
-  const dispatch = useDispatch()
-  const postComments = useSelector(selectComments)
-  const subredditSelected = useSelector(selectSelectedSubreddit)
-  const { postID } = useParams()
-
-  useEffect(() => {
-    dispatch(fetchComments(postID, subredditSelected))
-  }, [])
-
+export const Comments = ({ postComments }) => {
   return (
     <div>
       {postComments.length

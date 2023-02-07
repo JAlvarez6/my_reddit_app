@@ -10,6 +10,7 @@ import { marked } from 'marked'
 
 export const SinglePost = ({ Post }) => {
   const { postID } = useParams()
+
   return (
     <>
       <div className="posts-vote-container">
@@ -29,6 +30,7 @@ export const SinglePost = ({ Post }) => {
           2
         </button>
       </div>
+
       <div className="posts-content-container">
         <p>
           r/{Post.data.subreddit} Posted by {Post.data.author}{' '}
@@ -36,6 +38,7 @@ export const SinglePost = ({ Post }) => {
         </p>
         <h1>{Post.data.title}</h1>
 
+        {/* Checks for required ID in url and if post data has selftext then displays it */}
         {postID && Post.data.selftext ? (
           <div
             dangerouslySetInnerHTML={{

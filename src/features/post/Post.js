@@ -1,20 +1,30 @@
 import React, { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { fetchPost, selectLoadingPost, selectPost } from './PostSlice'
+import {
+  fetchPost,
+  fetchComments,
+  selectLoadingPost,
+  selectPost,
+  selectComments,
+} from './PostSlice'
+import { selectSelectedSubreddit } from '../posts/PostsSlice'
 import { SinglePost } from '../../components/SinglePost'
-import { Comments } from '../comments/Comments'
+import { Comments } from '../../components/Comments'
 
 export const Post = () => {
   const { postID } = useParams()
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const Post = useSelector(selectPost)
+  const postComments = useSelector(selectComments)
+  const subredditSelected = useSelector(selectSelectedSubreddit)
   const loading = useSelector(selectLoadingPost)
 
   useEffect(() => {
     dispatch(fetchPost(postID))
-  }, [dispatch, postID])
+    dispatch(fetchComments(postID, subredditSelected))
+  }, [dispatch, postID, subredditSelected])
 
   return (
     <div className="outer-post-container">
@@ -41,7 +51,7 @@ export const Post = () => {
 
       <div className="comment-container">
         <p>Comments Section</p>
-        <Comments />
+        <Comments postComments={postComments} />
       </div>
     </div>
   )

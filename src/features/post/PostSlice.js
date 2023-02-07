@@ -10,10 +10,25 @@ export const fetchPost = createAsyncThunk(
   }
 )
 
+export const fetchComments = createAsyncThunk(
+  'Post/fetchComments',
+  async (postID, thunkAPI) => {
+    const subreddit = thunkAPI.getState().Posts.SelectedSubreddit
+
+    const response = await fetch(
+      `https://www.reddit.com/${subreddit}/comments/${postID}.json`
+    )
+    const data = await response.json()
+
+    return data
+  }
+)
+
 export const PostSlice = createSlice({
   name: 'Post',
   initialState: {
     Post: [],
+    Comments: [],
     isLoadingPost: false,
     errorPost: false,
   },
@@ -32,10 +47,24 @@ export const PostSlice = createSlice({
         state.isLoadingPost = false
         state.errorPost = true
       })
+      .addCase(fetchComments.pending, (state) => {
+        state.isLoadingPost = true
+        state.errorPost = false
+      })
+      .addCase(fetchComments.fulfilled, (state, action) => {
+        state.Comments = action.payload
+        state.isLoadingPost = false
+        state.errorPost = false
+      })
+      .addCase(fetchComments.rejected, (state) => {
+        state.isLoadingPost = false
+        state.errorPost = true
+      })
   },
 })
 
 export const selectPost = (state) => state.Post.Post
+export const selectComments = (state) => state.Post.Comments
 export const selectLoadingPost = (state) => state.Post.isLoadingPost
 
 export default PostSlice.reducer
