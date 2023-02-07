@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { fetchSubreddits, selectSubreddits } from './SubredditsSlice'
 import { setSelectedSubreddit } from '../posts/PostsSlice'
 import logo from '../../data/logo/reddit-logo-green.png'
 
 export const Subreddits = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
   const Subreddits = useSelector(selectSubreddits)
 
   useEffect(() => {
@@ -18,13 +20,14 @@ export const Subreddits = () => {
       <ul className="subreddit-list">
         {Subreddits.map((Subreddit) => {
           return (
-            <li className="subreddit-category">
+            <li key={Subreddit.data.id} className="subreddit-category">
               <button
-                onClick={() =>
+                onClick={() => {
+                  navigate('/')
                   dispatch(
                     setSelectedSubreddit(Subreddit.data.display_name_prefixed)
                   )
-                }
+                }}
               >
                 <img
                   className="subreddit-icon-img"

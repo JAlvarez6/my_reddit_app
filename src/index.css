@@ -213,6 +213,11 @@ nav {
   margin-top: 1rem;
 }
 
+.post-goBack-button {
+  align-self: flex-start;
+  margin-left: 10%;
+}
+
 /* Single post comment section */
 
 .comment-container {
@@ -229,6 +234,7 @@ nav {
 .gallery-container {
   display: flex;
   position: relative;
+  overflow: hidden;
   right: 0;
 }
 
@@ -236,7 +242,7 @@ nav {
   width: 100%;
   flex-shrink: 0;
   position: relative;
-  right: 100%;
+  right: 0;
 }
 
 .gallery-slide img {

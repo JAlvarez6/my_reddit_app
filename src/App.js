@@ -13,7 +13,7 @@ function App() {
         <div className="main-container">
           <Routes>
             <Route path="/" element={<Posts />} />
-            <Route path="/post/:id" element={<Post />} />
+            <Route path="/post/:postID" element={<Post />} />
           </Routes>
           <Subreddits />
         </div>
