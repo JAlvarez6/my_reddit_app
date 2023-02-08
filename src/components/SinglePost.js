@@ -17,11 +17,13 @@ export const SinglePost = ({ Post }) => {
         <button
           onClick={(e) => {
             e.stopPropagation()
+
+            console.log(Post.data.score + 1)
           }}
         >
           1
         </button>
-        <p>{Post.data.score}</p>
+        <p id="vote-amount">{Post.data.score}</p>
         <button
           onClick={(e) => {
             e.stopPropagation()

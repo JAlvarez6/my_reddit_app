@@ -277,3 +277,10 @@ nav {
 .gallery-nav:hover {
   background-color: #8fd597;
 }
+
+.backToTop-button {
+  display: none;
+  position: fixed;
+  right: 20%;
+  bottom: 2rem;
+}

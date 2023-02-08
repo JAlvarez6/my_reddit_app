@@ -11,6 +11,7 @@ import {
 import { selectSelectedSubreddit } from '../posts/PostsSlice'
 import { SinglePost } from '../../components/SinglePost'
 import { Comments } from '../../components/Comments'
+import { backToTop, handleScrollToTop } from '../../utils/backToTop'
 
 export const Post = () => {
   const { postID } = useParams()
@@ -24,6 +25,10 @@ export const Post = () => {
   useEffect(() => {
     dispatch(fetchPost(postID))
     dispatch(fetchComments(postID, subredditSelected))
+
+    window.addEventListener('scroll', handleScrollToTop)
+
+    return () => window.removeEventListener('scroll', handleScrollToTop)
   }, [dispatch, postID, subredditSelected])
 
   return (
@@ -34,25 +39,16 @@ export const Post = () => {
       <div className="inner-post-container">
         {/* Refactor line bellow later */}
         {Post.length ? <SinglePost Post={Post[0]} /> : <p>Loading Post...</p>}
-
-        {/* <div className="post-likes-container">
-          <button>1</button>
-          <p>Likes</p>
-          <button>2</button>
-        </div>
-
-        <div className="post-content-container">
-          <p>Username and time posted</p>
-          <h1>Post Title</h1>
-          <img src="http://via.placeholder.com/450x300" alt="" />
-          <button>Comments</button>
-        </div> */}
       </div>
 
       <div className="comment-container">
         <p>Comments Section</p>
         <Comments postComments={postComments} />
       </div>
+
+      <button className="backToTop-button" onClick={backToTop}>
+        Back to Top
+      </button>
     </div>
   )
 }

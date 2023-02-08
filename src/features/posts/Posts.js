@@ -4,10 +4,12 @@ import {
   getPosts,
   selectLoadingPosts,
   selectPosts,
+  selectSearchTerm,
   selectSelectedSubreddit,
 } from './PostsSlice'
 import { useNavigate } from 'react-router-dom'
 import { SinglePost } from '../../components/SinglePost'
+import { backToTop, handleScrollToTop } from '../../utils/backToTop'
 
 export const Posts = () => {
   const dispatch = useDispatch()
@@ -15,10 +17,15 @@ export const Posts = () => {
   const Posts = useSelector(selectPosts)
   const selectSubreddit = useSelector(selectSelectedSubreddit)
   const loading = useSelector(selectLoadingPosts)
+  const userInput = useSelector(selectSearchTerm)
 
   useEffect(() => {
     dispatch(getPosts(selectSubreddit))
-  }, [dispatch, selectSubreddit])
+
+    window.addEventListener('scroll', handleScrollToTop)
+
+    return () => window.removeEventListener('scroll', handleScrollToTop)
+  }, [dispatch, selectSubreddit, userInput])
 
   const postClicked = (id) => {
     navigate(`post/${id}`)
@@ -33,6 +40,7 @@ export const Posts = () => {
           return (
             <div
               className="single-post-container"
+              key={Post.data.id}
               onClick={() => postClicked(Post.data.id)}
             >
               <SinglePost key={Post.data.id} Post={Post} />
@@ -40,6 +48,10 @@ export const Posts = () => {
           )
         })
       )}
+
+      <button className="backToTop-button" onClick={backToTop}>
+        Back to Top
+      </button>
     </div>
   )
 }

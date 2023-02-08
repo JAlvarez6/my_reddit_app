@@ -1,6 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { SearchBar } from '../features/searchbar/SearchBar.js'
+import { SearchBar } from '../features/searchTerm/SearchTerm'
 import logo from '../data/logo/reddit-logo-green.png'
 
 export const Navbar = () => {
