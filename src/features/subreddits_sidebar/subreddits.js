@@ -23,7 +23,19 @@ export const Subreddits = () => {
             <li key={Subreddit.data.id} className="subreddit-category">
               <button
                 onClick={() => {
+                  const checkActive =
+                    document.activeElement.parentElement.parentElement.querySelector(
+                      '.active'
+                    )
+
                   navigate('/')
+
+                  if (checkActive) {
+                    checkActive.className = ''
+                  }
+
+                  document.activeElement.className = 'active'
+
                   dispatch(
                     setSelectedSubreddit(Subreddit.data.display_name_prefixed)
                   )

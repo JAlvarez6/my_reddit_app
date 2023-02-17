@@ -7,6 +7,11 @@ import {
 } from '../utils/galleryHandler'
 import { useParams } from 'react-router-dom'
 import { marked } from 'marked'
+import { faComment } from '@fortawesome/free-regular-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { TbArrowBigTop, TbArrowBigDown } from 'react-icons/tb'
+import { TbArrowBigLeft } from 'react-icons/tb'
+import { TbArrowBigRight } from 'react-icons/tb'
 
 export const SinglePost = ({ Post }) => {
   const { postID } = useParams()
@@ -15,32 +20,59 @@ export const SinglePost = ({ Post }) => {
     <>
       <div className="posts-vote-container">
         <button
+          className="vote-Up"
           onClick={(e) => {
             e.stopPropagation()
 
-            console.log(Post.data.score + 1)
+            const upActive = document.activeElement
+
+            const downActive =
+              document.activeElement.parentElement.querySelector('.vote-Down')
+
+            if (upActive.className.includes('vote-Up-Active')) {
+              upActive.className = 'vote-Up'
+            } else {
+              upActive.className += ' vote-Up-Active'
+              downActive.className = 'vote-Down'
+            }
           }}
         >
-          1
+          {<TbArrowBigTop />}
         </button>
         <p id="vote-amount">{Post.data.score}</p>
         <button
+          className="vote-Down"
           onClick={(e) => {
             e.stopPropagation()
+
+            const downActive = document.activeElement
+
+            const upActive =
+              document.activeElement.parentElement.querySelector('.vote-Up')
+
+            if (downActive.className.includes('vote-Down-Active')) {
+              downActive.className = 'vote-Down'
+            } else {
+              downActive.className += ' vote-Down-Active'
+              upActive.className = 'vote-Up'
+            }
           }}
         >
-          2
+          {<TbArrowBigDown />}
         </button>
       </div>
 
       <div className="posts-content-container">
-        <p>
-          r/{Post.data.subreddit} Posted by {Post.data.author}{' '}
+        <p className="posts-cat-auth-time">
+          r/{Post.data.subreddit} <>&bull;</> Posted by{' '}
+          <span id="author-span">{Post.data.author}</span>
+          <> &bull; </>
           {formatTimeAgo(Post.data.created)}
         </p>
-        <h1>{Post.data.title}</h1>
+        <h2>{Post.data.title}</h2>
 
         {/* Checks for required ID in url and if post data has selftext then displays it */}
+
         {postID && Post.data.selftext ? (
           <div
             dangerouslySetInnerHTML={{
@@ -77,6 +109,7 @@ export const SinglePost = ({ Post }) => {
                 src={Post.data.preview.reddit_video_preview?.fallback_url}
                 type="video/webm"
               />
+              <p>This video can not be played at the moment.</p>
             </video>
           </div>
         ) : Post.data.post_hint?.match('image') ? (
@@ -95,10 +128,10 @@ export const SinglePost = ({ Post }) => {
               })}
 
               <button className="gallery-button-prev" onClick={galleryLeft}>
-                1
+                <TbArrowBigLeft />
               </button>
               <button className="gallery-button-next" onClick={galleryRight}>
-                2
+                <TbArrowBigRight />
               </button>
             </div>
           </div>
@@ -106,7 +139,19 @@ export const SinglePost = ({ Post }) => {
           ''
         )}
 
-        <button className="posts-content-comments">
+        <button
+          className="posts-content-comments"
+          onClick={() => {
+            if (postID) {
+              const commentSection = document.getElementById('comments')
+              commentSection.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start',
+              })
+            }
+          }}
+        >
+          <FontAwesomeIcon icon={faComment}></FontAwesomeIcon>{' '}
           {Post.data.num_comments} Comments
         </button>
       </div>

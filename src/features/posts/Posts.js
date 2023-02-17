@@ -29,6 +29,8 @@ export const Posts = () => {
 
   const postClicked = (id) => {
     navigate(`post/${id}`)
+
+    window.scrollTo({ left: 0, top: 0 })
   }
 
   return (

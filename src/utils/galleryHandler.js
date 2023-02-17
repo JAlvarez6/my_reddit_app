@@ -17,7 +17,7 @@ export const galleryImages = (galleryData) => {
 export const galleryRight = (e) => {
   e.stopPropagation()
 
-  const galleryContainerID = e.target.parentElement.id
+  const galleryContainerID = document.activeElement.parentElement.id
   const galleryContainer = document.getElementById(galleryContainerID)
   const gallerySlides = galleryContainer.querySelectorAll('.gallery-slide')
 
@@ -43,7 +43,7 @@ export const galleryRight = (e) => {
 export const galleryLeft = (e) => {
   e.stopPropagation()
 
-  const galleryContainerID = e.target.parentElement.id
+  const galleryContainerID = document.activeElement.parentElement.id
   const galleryContainer = document.getElementById(galleryContainerID)
   const gallerySlides = galleryContainer.querySelectorAll('.gallery-slide')
 

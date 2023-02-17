@@ -11,17 +11,14 @@ export const Comments = ({ postComments }) => {
             }
 
             return (
-              <div key={comment.data.id}>
-                <p>
-                  {'/r' +
-                    comment.data.subreddit +
-                    ' Posted by ' +
-                    comment.data.author +
-                    ' ' +
-                    formatTimeAgo(comment.data.created)}
+              <div key={comment.data.id} className="comment-container">
+                <p className="posts-cat-auth-time">
+                  /r{comment.data.subreddit} <>&bull;</> Posted by <>&bull; </>
+                  <span id="author-span">{comment.data.author}</span>{' '}
+                  {formatTimeAgo(comment.data.created)}
                 </p>
 
-                <p>{comment.data.body}</p>
+                <p className="comment-Body">{comment.data.body}</p>
               </div>
             )
           })

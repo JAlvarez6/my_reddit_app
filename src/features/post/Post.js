@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -12,6 +12,8 @@ import { selectSelectedSubreddit } from '../posts/PostsSlice'
 import { SinglePost } from '../../components/SinglePost'
 import { Comments } from '../../components/Comments'
 import { backToTop, handleScrollToTop } from '../../utils/backToTop'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 
 export const Post = () => {
   const { postID } = useParams()
@@ -21,6 +23,7 @@ export const Post = () => {
   const postComments = useSelector(selectComments)
   const subredditSelected = useSelector(selectSelectedSubreddit)
   const loading = useSelector(selectLoadingPost)
+  const commentsRef = useRef(null)
 
   useEffect(() => {
     dispatch(fetchPost(postID))
@@ -34,15 +37,14 @@ export const Post = () => {
   return (
     <div className="outer-post-container">
       <button className="post-goBack-button" onClick={() => navigate(-1)}>
-        go back
+        <FontAwesomeIcon icon={faArrowLeft} /> Back
       </button>
       <div className="inner-post-container">
         {/* Refactor line bellow later */}
         {Post.length ? <SinglePost Post={Post[0]} /> : <p>Loading Post...</p>}
       </div>
 
-      <div className="comment-container">
-        <p>Comments Section</p>
+      <div id="comments" className="comments-container" ref={commentsRef}>
         <Comments postComments={postComments} />
       </div>
 
