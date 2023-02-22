@@ -116,7 +116,7 @@ export const SinglePost = ({ Post }) => {
           </div>
         ) : Post.data.post_hint?.match('image') ? (
           <div className="posts-media-container">
-            <img src={Post.data.url} alt="Post Image" />
+            <img src={Post.data.url} alt="Post Image" loading="lazy" />
           </div>
         ) : Post.data?.is_gallery ? (
           <div className="posts-media-container">
@@ -124,7 +124,11 @@ export const SinglePost = ({ Post }) => {
               {galleryImages(Post.data.media_metadata).map((image, index) => {
                 return (
                   <div className="gallery-slide">
-                    <img src={image} alt={`Gallery image ${index + 1}`} />
+                    <img
+                      src={image}
+                      alt={`Gallery image ${index + 1}`}
+                      loading="lazy"
+                    />
                   </div>
                 )
               })}
