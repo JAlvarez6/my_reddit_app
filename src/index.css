@@ -1123,6 +1123,11 @@ nav {
     margin: 0;
   }
 
+  .subreddit-list {
+    height: 90vh;
+    overflow-y: auto;
+  }
+
   .subreddit-category {
     padding: 0.05rem 0;
   }
