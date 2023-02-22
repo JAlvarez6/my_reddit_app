@@ -22,7 +22,7 @@ export const Comments = ({ postComments }) => {
               </div>
             )
           })
-        : ''}
+        : 'No comments have been made yet...'}
     </div>
   )
 }

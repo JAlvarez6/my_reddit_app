@@ -28,6 +28,10 @@ export const Subreddits = () => {
                       '.active'
                     )
 
+                  // Closes mobile menu when category is clicked
+                  const menu = document.querySelector('.nav-category-menu-open')
+                  menu.style.display = 'none'
+
                   navigate('/')
 
                   if (checkActive) {

@@ -81,6 +81,14 @@ nav {
   font-size: 1.2rem;
 }
 
+.nav-category-menu {
+  display: none;
+}
+
+.nav-category-menu-open {
+  display: none;
+}
+
 /* Main container */
 
 .main-container {
@@ -435,7 +443,7 @@ nav {
 }
 
 #author-span {
-  color: green;
+  color: darkgreen;
 }
 
 /* Media Queries */
@@ -916,10 +924,6 @@ nav {
     box-shadow: 0 0 0 0, 0 0 0 0, 0 0 0 0, inset 0.3rem 0 0 0 green;
   }
 
-  .subreddit-title {
-    font-size: 0.65rem;
-  }
-
   .subreddit-icon-img {
     margin-left: 0.25rem;
   }
@@ -940,6 +944,10 @@ nav {
     font-size: 1rem;
   }
 
+  .nav-category-menu {
+    display: none;
+  }
+
   .subreddit-container {
     max-width: 30%;
     margin-top: 1rem;
@@ -947,10 +955,6 @@ nav {
     border-radius: 0.5rem 0 0 0.5rem;
     box-shadow: 1px 3px 6px 2px rgb(0 0 0 / 25%);
     padding: 0.25rem;
-  }
-
-  .subreddit-title {
-    font-size: 0.65rem;
   }
 
   .subreddit-icon-img {
@@ -1063,12 +1067,64 @@ nav {
   h2 {
     font-size: 1.25rem;
   }
+
+  .form-searchbar {
+    max-width: 50%;
+  }
+
   .form-searchbar-icon {
-    left: 60%;
+    left: 62%;
+  }
+
+  .nav-category-menu {
+    display: block;
+    margin: auto;
+    font-size: 1.15rem;
+    border: none;
+    border-radius: 0.4rem;
+    background: whitesmoke;
+    box-shadow: 0 1px 4px 1.5px rgb(0 0 0 / 25%);
+  }
+
+  .nav-category-menu-open {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 70%;
+    height: 100%;
+    background-color: ivory;
+    z-index: 10;
+  }
+
+  .nav-close-menu {
+    position: absolute;
+    margin-top: 1.8rem;
+    margin-left: 0.75rem;
+    background-color: whitesmoke;
+    padding: 0.3rem 0.6rem;
+    font-size: 1.25rem;
+    border: none;
+    border-radius: 0.4rem;
+    box-shadow: 1px 2px 4px 1.5px rgb(0 0 0 / 25%);
   }
 
   .subreddit-container {
     display: none;
+    max-width: 80%;
+    margin: 0.4rem 0 0 auto;
+    border-radius: 0.5rem 0 0 0.5rem;
+    box-shadow: none;
+    padding: 0;
+  }
+
+  .subreddit-header {
+    border-bottom: none;
+    margin: 0;
+  }
+
+  .subreddit-category {
+    padding: 0.05rem 0;
   }
 
   .posts-container {
@@ -1134,5 +1190,11 @@ nav {
 
   .backToTop-button {
     display: none !important;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .form-searchbar-icon {
+    left: 70%;
   }
 }

@@ -20,6 +20,7 @@ export const SinglePost = ({ Post }) => {
     <>
       <div className="posts-vote-container">
         <button
+          aria-label="Upvote"
           className="vote-Up"
           onClick={(e) => {
             e.stopPropagation()
@@ -41,6 +42,7 @@ export const SinglePost = ({ Post }) => {
         </button>
         <p id="vote-amount">{Post.data.score}</p>
         <button
+          aria-label="Downvote"
           className="vote-Down"
           onClick={(e) => {
             e.stopPropagation()
@@ -87,7 +89,7 @@ export const SinglePost = ({ Post }) => {
 
         {Post.data.post_hint?.match('hosted:video') ? (
           <div className="posts-media-container">
-            <video controls autoPlay muted>
+            <video controls muted>
               <source
                 src={Post.data.media.reddit_video?.fallback_url}
                 type="video/mp4"
